@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Halaman Utama</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 60px; }
+    button { padding: 12px 24px; font-size: 16px; margin: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1 id="judul">Selamat Datang!</h1>
+  <p id="deskripsi">Klik tombol untuk mendukung kami sebelum download.</p>
+
+  <button id="btnSponsor1" onclick="bukaSponsor1()">Kunjungi Sponsor 1</button>
+  <button id="btnSponsor2" onclick="bukaSponsor2()" style="display:none;">Kunjungi Sponsor 2</button>
+  <button id="btnDownload" onclick="download()" style="display:none;">Download Sekarang</button>
+
+  <script>
+    // Ambil status tahap dari localStorage (agar tetap jika user refresh)
+    const tahap = parseInt(localStorage.getItem("tahap") || "0");
+
+    if (tahap >= 1) {
+      document.getElementById("btnSponsor2").style.display = "inline-block";
+    }
+    if (tahap >= 2) {
+      document.getElementById("btnSponsor2").style.display = "none";
+      document.getElementById("btnDownload").style.display = "inline-block";
+      document.getElementById("judul").textContent = "Terima kasih!";
+      document.getElementById("deskripsi").textContent = "Silakan klik untuk mendownload.";
+    }
+
+    function bukaSponsor1() {
+      window.open("https://www.profitableratecpm.com/m0vaus2n?key=1b56bd2f9fe7fe3391d9df2289235f15", "_blank");
+      localStorage.setItem("tahap", "1");
+      document.getElementById("btnSponsor2").style.display = "inline-block";
+    }
+
+    function bukaSponsor2() {
+      window.open("https://otieu.com/4/9545071", "_blank");
+      localStorage.setItem("tahap", "2");
+      document.getElementById("btnSponsor2").style.display = "none";
+      document.getElementById("btnDownload").style.display = "inline-block";
+      document.getElementById("judul").textContent = "Terima kasih!";
+      document.getElementById("deskripsi").textContent = "Silakan klik untuk mendownload.";
+    }
+
+    function download() {
+      // Redirect ke file download
+      window.location.href = "https://www.mediafire.com/file/zupplqu7hfe1ej1/kepergok_selingkuh.zip/file";
+      localStorage.removeItem("tahap"); // Reset status setelah download
+    }
+  </script>
+
+</body>
+</html>
