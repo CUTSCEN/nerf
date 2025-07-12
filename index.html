@@ -10,47 +10,43 @@
 </head>
 <body>
 
-  <h1 id="judul">Selamat Datang!</h1>
-  <p id="deskripsi">Klik tombol untuk mendukung kami sebelum download.</p>
+  <h1 id="judul">Selamat Datang</h1>
+  <p id="deskripsi">Silakan klik sponsor untuk melanjutkan ke download.</p>
 
-  <button id="btnSponsor1" onclick="bukaSponsor1()">Kunjungi Sponsor 1</button>
-  <button id="btnSponsor2" onclick="bukaSponsor2()" style="display:none;">Kunjungi Sponsor 2</button>
-  <button id="btnDownload" onclick="download()" style="display:none;">Download Sekarang</button>
+  <button id="btnSponsor1" onclick="openSponsor('iklan1.html', 1)">Kunjungi Sponsor 1</button>
+  <button id="btnSponsor2" onclick="openSponsor('iklan2.html', 2)" style="display:none;">Kunjungi Sponsor 2</button>
+  <button id="btnDownload" onclick="goToDownload()" style="display:none;">Download Sekarang</button>
 
   <script>
-    // Ambil status tahap dari localStorage (agar tetap jika user refresh)
-    const tahap = parseInt(localStorage.getItem("tahap") || "0");
+    let tahap = parseInt(localStorage.getItem("tahap") || "0");
 
-    if (tahap >= 1) {
-      document.getElementById("btnSponsor2").style.display = "inline-block";
-    }
-    if (tahap >= 2) {
-      document.getElementById("btnSponsor2").style.display = "none";
-      document.getElementById("btnDownload").style.display = "inline-block";
-      document.getElementById("judul").textContent = "Terima kasih!";
-      document.getElementById("deskripsi").textContent = "Silakan klik untuk mendownload.";
-    }
-
-    function bukaSponsor1() {
-      window.open("https://www.profitableratecpm.com/m0vaus2n?key=1b56bd2f9fe7fe3391d9df2289235f15", "_blank");
-      localStorage.setItem("tahap", "1");
-      document.getElementById("btnSponsor2").style.display = "inline-block";
+    function updateUI() {
+      if (tahap === 1) {
+        document.getElementById("btnSponsor2").style.display = "inline-block";
+        document.getElementById("btnSponsor1").style.display = "none";
+        document.getElementById("deskripsi").textContent = "Sponsor 1 selesai. Silakan lanjut ke sponsor kedua.";
+      } else if (tahap === 2) {
+        document.getElementById("btnSponsor2").style.display = "none";
+        document.getElementById("btnSponsor1").style.display = "none";
+        document.getElementById("btnDownload").style.display = "inline-block";
+        document.getElementById("deskripsi").textContent = "Terima kasih! Silakan download.";
+        document.getElementById("judul").textContent = "Selesai 🙏";
+      }
     }
 
-    function bukaSponsor2() {
-      window.open("https://otieu.com/4/9545071", "_blank");
-      localStorage.setItem("tahap", "2");
-      document.getElementById("btnSponsor2").style.display = "none";
-      document.getElementById("btnDownload").style.display = "inline-block";
-      document.getElementById("judul").textContent = "Terima kasih!";
-      document.getElementById("deskripsi").textContent = "Silakan klik untuk mendownload.";
+    function openSponsor(url, step) {
+      window.open(url, "_blank");
+      localStorage.setItem("tahap", step.toString());
+      tahap = step;
+      updateUI();
     }
 
-    function download() {
-      // Redirect ke file download
-      window.location.href = "https://www.mediafire.com/file/zupplqu7hfe1ej1/kepergok_selingkuh.zip/file";
-      localStorage.removeItem("tahap"); // Reset status setelah download
+    function goToDownload() {
+      window.location.href = "download.html";
+      localStorage.removeItem("tahap");
     }
+
+    updateUI();
   </script>
 
 </body>
