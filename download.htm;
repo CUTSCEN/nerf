@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Download</title>
+</head>
+<body style="text-align:center; margin-top:60px; font-family:sans-serif;">
+  <h2>Terima kasih telah mendukung kami 🙏</h2>
+  <p>Silakan klik tombol di bawah untuk mulai download:</p>
+  <a href="https://www.mediafire.com/file/zupplqu7hfe1ej1/kepergok_selingkuh.zip/file" target="_blank">
+    <button style="font-size:18px; padding:12px 28px;">Download Sekarang</button>
+  </a>
+</body>
+</html>
